@@ -2,10 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import '@inkline/inkline/dist/inkline.css'
-import Inkline from '@inkline/inkline'
-
-Vue.use(Inkline);
+import './plugins/element.js'
 
 Vue.config.productionTip = false
 
