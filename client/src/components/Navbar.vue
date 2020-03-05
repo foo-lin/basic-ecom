@@ -56,6 +56,7 @@ export default {
 	top: 0;
 	left: 0;
 	width: 100%;
+	z-index: 10;
 	.nav__logo {
 		font-size: 39px;
 		margin-top: 10px;
