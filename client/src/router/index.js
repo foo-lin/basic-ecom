@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Homepage from "../views/Homepage";
-
+import Shoppage from "../views/Shop";
 Vue.use(VueRouter);
 
 const routes = [
@@ -9,6 +9,11 @@ const routes = [
 		path: "/",
 		component: Homepage,
 		name: "homepage"
+	},
+	{
+		path: "/shop",
+		component: Shoppage,
+		name: "shoppage"
 	}
 ];
 
