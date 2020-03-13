@@ -3,24 +3,52 @@ from flask import request
 from models.user import UserModel
 from schema.user import UserSchema
 from marshmallow import ValidationError
-user_schema = UserSchema()
 from db import db
+from utils.apperror import catchExcption
+from utils.customexp import CustomException
+
+user_schema = UserSchema()
 
 class UserResource(Resource):
+
+    @catchExcption
     def get(self, name):
         user = UserModel.find_by_username(name)
-        
         if user:
             return user_schema.dump(user)
-        return {'message': 'user not found'}, 400
+        raise CustomException(f"user with name {name} does not exits", 404) 
+
+    def delete(self, name):
+        user = UserModel.find_by_username(name)
+        if user:
+            user.delete_from_db()
+        return {'status': 'ok'}, 204
     
-class UsersResource(Resource):
-    def post(self):
-        try:
-            user = user_schema.load(request.get_json())
+    @catchExcption
+    def patch(self, name):
+        user = UserModel.find_by_username(name)
+        if user:
+            for key, value in request.get_json().items():
+                if key not in ['id']:
+                    setattr(user, key, value)
             user.save_to_db()
-            return {"ok": 23}        
+            return {user: user_schema.dump(user)}
+        else:
+            raise CustomException(f"user with name {name} does not found", 404)   
+
+class UserListResource(Resource):
+    
+    def get(self):
+        print(self)
+        users = UserModel.query.all()
+        users_json = [user_schema.dump(x) for x in users]
+        return {'users': users_json}
+        
+    
+    @catchExcption
+    def post(self):
+        user = user_schema.load(request.get_json())
+        user.save_to_db()
+        return user_schema.dump(user)        
             
-        except ValidationError as err:
-            return err.messages
         

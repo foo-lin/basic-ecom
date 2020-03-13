@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from flask_restful import Api
-from resources.user import UserResource, UsersResource
+from resources.user import UserResource,UserListResource 
 
 from ma import ma
 app = Flask(__name__)
@@ -12,10 +12,11 @@ api = Api(app)
 
 @app.before_first_request
 def create_tables():
+    print('first request')
     db.create_all()
 
-api.add_resource( UserResource, '/user/<string:name>' )
-api.add_resource(UsersResource, '/users')
+api.add_resource( UserResource, '/api/v1/user/<string:name>' )
+api.add_resource(UserListResource, '/api/v1/user')
 
 
 if __name__ == '__main__':
