@@ -15,7 +15,7 @@ class User(db.Model):
     joined = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
     role = db.Column(db.Enum(UserRole), nullable=False)
     photo = db.Column(db.String(80), default="user.jpg")
-    addresses = db.relationship('Address', backref='user', lazy=True)
+    addresses = db.relationship('Address', backref='user', lazy='dynamic')
 
     @classmethod
     def find_by_username(cls, name):

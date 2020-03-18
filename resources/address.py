@@ -28,12 +28,13 @@ class AddressIdResource(Resource):
         user_id = get_jwt_identity()
         user = User.find_by_id(user_id)
         address = Address.find_by_id(_id)
+        print(user.addresses)
         user_address = user.addresses.all()
         if address in user_address:
             for key, value in request.get_json().items():
                 setattr(address, key, value)
             address.save_to_db()
-            return {address: address_schema.dump(address)}
+            return {'address': address_schema.dump(address)}
         raise CustomException(f"User cannot update only one's own address", 400)
         
     @jwt_required
@@ -58,7 +59,7 @@ class AddressListResource(Resource):
         user_id = get_jwt_identity()
         address.user_id = user_id
         address.save_to_db()
-        return  address_schema.dump(data)
+        return  address_schema.dump(address)
     
     @jwt_required
     def get(self):

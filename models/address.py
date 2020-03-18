@@ -8,7 +8,7 @@ class Address(db.Model):
     city = db.Column(db.String(80), nullable=False)
     address = db.Column(db.String(80), nullable=False)
     zip = db.Column(db.String(10), nullable=False)
-    state = db.Column(db.String(20), nullable=False)
+    state = db.Column(db.String(20), nullable=False) 
     country = db.Column(db.String(20), nullable=False)
     createdAt = db.Column(db.DateTime, default=datetime.utcnow())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
