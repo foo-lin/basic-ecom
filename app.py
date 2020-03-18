@@ -5,6 +5,7 @@ from resources.user import UserResource,UserListResource
 from resources.category import CategoryIdResource
 from resources.category import CategoryListResource
 from resources.product import ProductCagegoryResource, ProductListResource
+from resources.review import ReviewProductResource
 from blueprints.auth import auth_blueprint
 from ma import ma
 from flask_jwt_extended import JWTManager, get_jwt_claims, jwt_required
@@ -41,6 +42,8 @@ api.add_resource(CategoryListResource, '/api/v1/category')
 
 api.add_resource(ProductCagegoryResource, '/api/v1/category/<int:category_id>/product')
 api.add_resource(ProductListResource, '/api/v1/product')
+
+api.add_resource(ReviewProductResource, '/api/v1/product/<int:product_id>/review')
 
 
 if __name__ == '__main__':
