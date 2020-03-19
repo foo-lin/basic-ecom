@@ -1,6 +1,7 @@
 from db import db
 import datetime
 from enum import Enum
+from .order import Orders
 
 
 class UserRole(Enum):
@@ -16,6 +17,7 @@ class User(db.Model):
     role = db.Column(db.Enum(UserRole), nullable=False)
     photo = db.Column(db.String(80), default="user.jpg")
     addresses = db.relationship('Address', backref='user', lazy='dynamic')
+    orders = db.relationship('Orders', backref='user', lazy='dynamic')
 
     @classmethod
     def find_by_username(cls, name):

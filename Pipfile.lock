@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a73e557b52622b227e1036ee87974c8fb620759ec4ea1216fa96df80f343ff91"
+            "sha256": "2f23f58b99686479fcd3764f11c9580ba44ac8f15683d13088624e19a88c6656"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -135,6 +135,14 @@
             ],
             "index": "pypi",
             "version": "==3.5.1"
+        },
+        "marshmallow-enum": {
+            "hashes": [
+                "sha256:38e697e11f45a8e64b4a1e664000897c659b60aa57bfa18d44e226a9920b6e58",
+                "sha256:57161ab3dbfde4f57adeb12090f39592e992b9c86d206d02f6bd03ebec60f072"
+            ],
+            "index": "pypi",
+            "version": "==1.5.1"
         },
         "marshmallow-sqlalchemy": {
             "hashes": [

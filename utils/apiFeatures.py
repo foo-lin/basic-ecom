@@ -27,7 +27,7 @@ class ApiFeature:
                         order_by = getattr(self.model, i)
                     self.query = self.query.order_by(order_by)
         else:
-            self.query = self.query.order_by(self.model.createAt.desc())
+            self.query = self.query.order_by(self.model.createdAt.desc())
         return self
     
     def paginate(self):
@@ -35,6 +35,5 @@ class ApiFeature:
         limit = int(self.queryObj.get('limit', 2))
         skip = (page-1)*limit
         self.query = self.query.limit(limit).offset(skip)
-        print(skip)
         return self
         

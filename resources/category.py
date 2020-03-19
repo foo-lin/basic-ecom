@@ -15,7 +15,6 @@ class CategoryIdResource(Resource):
     def get(self, _id):
         category = Category.find_by_id(_id)
         if category:
-            
             return {'category': category_schema.dump(category)}
         raise CustomException('Category not found', 404)
         

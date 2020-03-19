@@ -6,7 +6,9 @@ from resources.category import CategoryIdResource
 from resources.category import CategoryListResource
 from resources.product import ProductCagegoryResource, ProductListResource
 from resources.review import ReviewProductResource
+from resources.order import OrderResource
 from blueprints.auth import auth_blueprint
+from blueprints.static import static_blueprint
 from ma import ma
 from flask_jwt_extended import JWTManager, get_jwt_claims, jwt_required
 
@@ -28,7 +30,8 @@ jwt = JWTManager(app=app)
 
 
 
-app.register_blueprint(auth_blueprint, url_prefix="/api/v1")
+app.register_blueprint(auth_blueprint, url_prefix="/api/v1/auth")
+app.register_blueprint(static_blueprint, url_prefix="/api/v1/static")
 
 
 api.add_resource( UserResource, '/api/v1/user/<string:name>' )
@@ -44,6 +47,8 @@ api.add_resource(ProductCagegoryResource, '/api/v1/category/<int:category_id>/pr
 api.add_resource(ProductListResource, '/api/v1/product')
 
 api.add_resource(ReviewProductResource, '/api/v1/product/<int:product_id>/review')
+
+api.add_resource(OrderResource, '/api/v1/order')
 
 
 if __name__ == '__main__':

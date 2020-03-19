@@ -16,6 +16,7 @@ marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 flask-jwt-extended = "*"
 awesome-slugify = "*"
+marshmallow-enum = "*"
 
 [requires]
 python_version = "3.8"

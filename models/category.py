@@ -11,7 +11,8 @@ class Category(db.Model):
     description = db.Column(db.Text, nullable=False)
     createdAt = db.Column(db.DateTime, default=datetime.utcnow())
     photo = db.Column(db.String(80))
-    products = db.relationship(Product, backref='category', lazy='dynamic')
+    products = db.relationship('Product', backref='category', lazy='dynamic')
+    # products = db.relationship('Product', backref='category', lazy='dynmaic')
     
     def __init__(self, *args, **kwargs):
         kwargs['slug'] = slugify(kwargs['name']) 
